@@ -1,7 +1,10 @@
 #pragma once
 
+#include "Board.h"
+
 #include <cassert>
 #include <iostream>
+#include <queue>
 
 enum Algorithm {
     BREADTH_FIRST_SEARCH = 'B',
@@ -19,12 +22,14 @@ struct GameStats {
 class Game {
   private:
     Algorithm algo;
-    u_int8_t board[9][9];
+    Board board;
     GameStats stats;
+
+    bool BreadthFirstSearch(void);
 
   public:
     Game(int argc, char *argv[]);
-    void printBoard(void);
+    void printBoard(char sepNum = ' ', char sepLine = '\n');
     void Solve(void);
     struct GameStats getStats(void);
 };

@@ -15,19 +15,13 @@ Game::Game(int argc, char *argv[]) {
     for (auto i = 0; i < 9; i++) {
         for (auto j = 0; j < 9; j++) {
             u_int8_t n = argv[2 + i][j];
-            this->board[i][j] = n - '0';
+            this->board.at(i, j) = n - '0';
         }
     }
 }
 
-void Game::printBoard(void) {
-    for (auto i = 0; i < 9; i++) {
-        for (auto j = 0; j < 9; j++) {
-            std::cout << (int)this->board[i][j];
-        }
-        std::cout << " ";
-    }
-    std::cout << std::endl;
+void Game::printBoard(char sepNum, char sepLine) {
+    this->board.show(sepNum, sepLine);
 }
 
 void Game::Solve(void) {
@@ -38,7 +32,7 @@ void Game::Solve(void) {
 
     switch (this->algo) {
     case BREADTH_FIRST_SEARCH:
-        // call function
+        this->BreadthFirstSearch();
         break;
 
     case ITERATIVE_DEEPENING_SEARCH:
@@ -68,3 +62,38 @@ void Game::Solve(void) {
 }
 
 struct GameStats Game::getStats(void) { return this->stats; }
+
+bool Game::BreadthFirstSearch(void) {
+    auto q = std::queue<Board>();
+
+    q.push(this->board);
+
+    while (!q.empty()) {
+        Board current = q.front();
+        q.pop();
+
+        // current.show();
+        // std::cout << std::endl;
+
+        if (current.validateSolution()) {
+            this->board = current;
+            return true;
+        }
+
+        for (u_int8_t i = 0; i < 9; i++) {
+            for (u_int8_t j = 0; j < 9; j++) {
+                if (this->board.at(i, j) != 0)
+                    continue;
+                for (u_int8_t n = 1; n <= 9; n++) {
+                    if (this->board.isValidMove(n, i, j)) {
+                        Board nb = current;
+                        nb.at(i, j) = n;
+                        q.push(nb);
+                    }
+                }
+            }
+        }
+    }
+
+    return false;
+}

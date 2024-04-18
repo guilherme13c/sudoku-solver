@@ -1,5 +1,5 @@
 CC := g++
-CFLAGS := -Wall -O2 -Iinc
+CFLAGS := -Wall -O3 -Iinc
 
 SRC := $(shell ls src/*)
 BUILD := bin/TP1
@@ -14,3 +14,6 @@ debug: $(TARGET)
 
 test: $(BUILD)
 	$(BUILD) B 107006450 025340008 060001070 053000029 610009800 000602007 001093200 008000000 040078591
+
+clean: $(BUILD)
+	rm -rf bin/TP1

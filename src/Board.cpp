@@ -31,10 +31,15 @@ Board &Board::operator=(const Board &other) {
 void Board::show(char sepNum, char sepLine) {
     for (auto i = 0; i < 9; i++) {
         for (auto j = 0; j < 9; j++) {
-            std::cout << (int)this->at(i, j) << sepNum;
+            std::cout << (int)this->at(i, j);
+            if (sepNum != '\v')
+                std::cout << sepNum;
         }
-        std::cout << sepLine;
+        if (sepLine != '\v')
+            std::cout << sepLine;
     }
+    if (sepLine != '\n')
+        std::cout << std::endl;
 }
 
 bool Board::isFilled(void) {
@@ -42,5 +47,20 @@ bool Board::isFilled(void) {
         if (this->values[i] == 0)
             return false;
     }
+    return true;
+}
+
+bool Board::isValidMove(int row, int col, int num) {
+    if (this->at(row, col) != 0) {
+        return false;
+    }
+
+    for (int i = 0; i < 9; ++i) {
+        if (this->at(row, i) == num || this->at(i, col) == num ||
+            this->at(row - row % 3 + i / 3, col - col % 3 + i % 3) == num) {
+            return false;
+        }
+    }
+
     return true;
 }

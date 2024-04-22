@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
 
     std::cout << stats.expansion_count << " " << stats.t << std::endl;
 
-    g.printBoard();
+    g.printBoard('\v', ' ');
 
     return 0;
 }

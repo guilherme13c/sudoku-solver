@@ -32,7 +32,7 @@ void Game::Solve(void) {
 
     switch (this->algo) {
     case BREADTH_FIRST_SEARCH:
-        // call function
+        this->BreadthFirstSearch();
         break;
 
     case ITERATIVE_DEEPENING_SEARCH:
@@ -62,53 +62,3 @@ void Game::Solve(void) {
 }
 
 struct GameStats Game::getStats(void) { return this->stats; }
-
-bool Game::IterativeDeepeningSearch(void) {
-    for (int depth = 1; depth <= 81; depth++) {
-        if (this->depthLimitedSearch(depth))
-            return true;
-    }
-
-    return false;
-}
-
-bool Game::depthLimitedSearch(int depth) {
-    if (depth == 0) {
-        return this->board.isFilled();
-    }
-
-    for (int i = 0; i < 9; ++i) {
-        for (int j = 0; j < 9; ++j) {
-            if (board.at(i, j) == 0) {
-                for (int num = 1; num <= 9; ++num) {
-                    if (this->isValidMove(i, j, num)) {
-                        this->stats.expansion_count++;
-                        board.at(i, j) = num;
-                        if (this->depthLimitedSearch(depth - 1)) {
-                            return true;
-                        }
-                        board.at(i, j) = 0;
-                    }
-                }
-                return false;
-            }
-        }
-    }
-
-    return true;
-}
-
-bool Game::isValidMove(int row, int col, int num) {
-    if (this->board.at(row, col) != 0) {
-        return false;
-    }
-
-    for (int i = 0; i < 9; ++i) {
-        if (this->board.at(row, i) == num || this->board.at(i, col) == num ||
-            board.at(row - row % 3 + i / 3, col - col % 3 + i % 3) == num) {
-            return false;
-        }
-    }
-
-    return true;
-}

@@ -25,9 +25,10 @@ class Game {
     Board board;
     GameStats stats;
 
+    bool BreadthFirstSearch(void);
+
     bool IterativeDeepeningSearch(void);
     bool depthLimitedSearch(int depth);
-    bool isValidMove(int row, int col, int num);
 
   public:
     Game(int argc, char *argv[]);

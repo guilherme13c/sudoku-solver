@@ -3,6 +3,7 @@
 #include <cassert>
 #include <cstring>
 #include <iostream>
+#include <queue>
 
 class Board {
   private:
@@ -16,8 +17,7 @@ class Board {
 
     u_int8_t &at(const u_int8_t x, const u_int8_t y);
 
-    bool validateSolution(void);
-    bool isValidMove(const u_int8_t val, const u_int8_t x, const u_int8_t y);
+    bool isFilled(void);
 
     void show(char sepNum = ' ', char sepLine = '\n');
 };

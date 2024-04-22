@@ -16,7 +16,7 @@ enum Algorithm {
 
 struct GameStats {
     time_t t;
-    u_int16_t expansion_count;
+    u_int64_t expansion_count;
 };
 
 class Game {
@@ -25,7 +25,9 @@ class Game {
     Board board;
     GameStats stats;
 
-    bool BreadthFirstSearch(void);
+    bool IterativeDeepeningSearch(void);
+    bool depthLimitedSearch(int depth);
+    bool isValidMove(int row, int col, int num);
 
   public:
     Game(int argc, char *argv[]);

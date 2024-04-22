@@ -3,6 +3,7 @@
 #include "Board.h"
 
 #include <cassert>
+#include <chrono>
 #include <iostream>
 #include <queue>
 
@@ -15,7 +16,7 @@ enum Algorithm {
 };
 
 struct GameStats {
-    time_t t;
+    int64_t t;
     u_int64_t expansion_count;
 };
 

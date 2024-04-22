@@ -28,7 +28,7 @@ void Game::Solve(void) {
     this->stats.expansion_count = 0;
     this->stats.t = (time_t)0;
 
-    auto starting_time = time(nullptr);
+    auto starting_time = std::chrono::high_resolution_clock::now();
 
     switch (this->algo) {
     case BREADTH_FIRST_SEARCH:
@@ -55,8 +55,10 @@ void Game::Solve(void) {
         break;
     }
 
-    auto ending_time = time(nullptr);
-    this->stats.t = ending_time - starting_time;
+    auto ending_time = std::chrono::high_resolution_clock::now();
+    this->stats.t = std::chrono::duration_cast<std::chrono::milliseconds>(
+                        ending_time - starting_time)
+                        .count();
 
     return;
 }

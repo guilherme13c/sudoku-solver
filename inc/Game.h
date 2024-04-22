@@ -30,6 +30,8 @@ class Game {
     bool IterativeDeepeningSearch(void);
     bool depthLimitedSearch(int depth);
 
+    bool UniformCostSearch(void);
+
   public:
     Game(int argc, char *argv[]);
     void printBoard(char sepNum = ' ', char sepLine = '\n');

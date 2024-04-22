@@ -40,7 +40,7 @@ void Game::Solve(void) {
         break;
 
     case UNIFORM_COST_SEARCH:
-        // call function
+        this->UniformCostSearch();
         break;
 
     case A_STAR_SEARCH:

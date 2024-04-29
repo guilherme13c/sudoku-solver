@@ -33,6 +33,10 @@ class Game {
 
     bool UniformCostSearch(void);
 
+    bool GreedyBestFirstSearch(void);
+
+    bool AStarSearch(void);
+
   public:
     Game(int argc, char *argv[]);
     void printBoard(char sepNum = ' ', char sepLine = '\n');

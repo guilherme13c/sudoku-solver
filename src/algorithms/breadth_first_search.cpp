@@ -8,6 +8,7 @@ bool Game::BreadthFirstSearch(void) {
     while (!q->empty()) {
         Board current = q->front();
         q->pop();
+        this->stats.expansion_count++;
 
         if (current.isFilled()) {
             this->board = current;
@@ -23,7 +24,6 @@ bool Game::BreadthFirstSearch(void) {
                             Board copy = Board(current);
                             copy.at(row, col) = i;
                             q->push(copy);
-                            this->stats.expansion_count++;
                         }
                     }
                     goto next_iteration;

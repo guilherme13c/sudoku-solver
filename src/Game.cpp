@@ -44,11 +44,11 @@ void Game::Solve(void) {
         break;
 
     case A_STAR_SEARCH:
-        // call function
+        this->AStarSearch();
         break;
 
     case GREEDY_BEST_FIRST_SEARCH:
-        // call function
+        this->GreedyBestFirstSearch();
         break;
 
     default:

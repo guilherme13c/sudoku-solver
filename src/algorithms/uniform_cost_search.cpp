@@ -8,6 +8,7 @@ bool Game::UniformCostSearch(void) {
     while (!q->empty()) {
         Board current = q->top();
         q->pop();
+        this->stats.expansion_count++;
 
         if (current.isFilled()) {
             this->board = current;
@@ -23,7 +24,6 @@ bool Game::UniformCostSearch(void) {
                             Board copy = Board(current);
                             copy.at(row, col) = i;
                             q->push(copy);
-                            this->stats.expansion_count++;
                         }
                     }
                     goto next_iteration;

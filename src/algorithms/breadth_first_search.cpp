@@ -1,18 +1,16 @@
 #include "Game.h"
 
 bool Game::BreadthFirstSearch(void) {
-    std::queue<Board> *q = new std::queue<Board>;
+    std::queue<Board> q;
+    q.push(this->board);
 
-    q->push(this->board);
-
-    while (!q->empty()) {
-        Board current = q->front();
-        q->pop();
+    while (!q.empty()) {
+        Board current = q.front();
+        q.pop();
         this->stats.expansion_count++;
 
         if (current.isFilled()) {
             this->board = current;
-            delete q;
             return true;
         }
 
@@ -23,7 +21,7 @@ bool Game::BreadthFirstSearch(void) {
                         if (current.isValidMove(row, col, i)) {
                             Board copy = Board(current);
                             copy.at(row, col) = i;
-                            q->push(copy);
+                            q.push(copy);
                         }
                     }
                     goto next_iteration;
@@ -32,8 +30,6 @@ bool Game::BreadthFirstSearch(void) {
         }
     next_iteration: {} // jump to next iteration
     }
-
-    delete q;
 
     return true;
 }

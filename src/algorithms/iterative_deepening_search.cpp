@@ -1,7 +1,7 @@
 #include "Game.h"
 
 bool Game::IterativeDeepeningSearch(void) {
-    for (int depth = 0; depth <= 81; depth++) {
+    for (int depth = 1; depth <= 81; depth += 2) {
         if (this->depthLimitedSearch(depth))
             return true;
     }

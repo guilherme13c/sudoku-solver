@@ -19,6 +19,8 @@ test: $(BUILD)
 	$(BUILD) B $(SUDOKU)
 	$(BUILD) I $(SUDOKU)
 	$(BUILD) U $(SUDOKU)
+	$(BUILD) G $(SUDOKU)
+	$(BUILD) A $(SUDOKU)
 
 clean: $(BUILD)
 	rm -rf bin/TP1

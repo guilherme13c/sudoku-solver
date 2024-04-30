@@ -1,18 +1,17 @@
 #include "Game.h"
 
 bool Game::UniformCostSearch(void) {
-    std::priority_queue<Board> *q = new std::priority_queue<Board>;
+    std::priority_queue<Board> q;
 
-    q->push(this->board);
+    q.push(this->board);
 
-    while (!q->empty()) {
-        Board current = q->top();
-        q->pop();
+    while (!q.empty()) {
+        Board current = q.top();
+        q.pop();
         this->stats.expansion_count++;
 
         if (current.isFilled()) {
             this->board = current;
-            delete q;
             return true;
         }
 
@@ -23,7 +22,7 @@ bool Game::UniformCostSearch(void) {
                         if (current.isValidMove(row, col, i)) {
                             Board copy = Board(current);
                             copy.at(row, col) = i;
-                            q->push(copy);
+                            q.push(copy);
                         }
                     }
                     goto next_iteration;
@@ -32,8 +31,6 @@ bool Game::UniformCostSearch(void) {
         }
     next_iteration: {} // jump to next iteration
     }
-
-    delete q;
 
     return true;
 }

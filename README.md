@@ -9,7 +9,7 @@ This project is a sudoku solver made for the Artificial Inteligence course of [U
 To build the program on a Unix environment, you can use the command:
 
 ``` bash
-make build
+make
 ```
 
 **Obs: This program depends on `g++` and `gnu make`. Make sure you have both programs installed before running the build command.**

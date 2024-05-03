@@ -20,7 +20,8 @@ test: $(BUILD) test/generate_report.py
 	test/medium/test.sh
 	test/hard/test.sh
 
+report: test
 	python3 test/generate_report.py
 
 clean:
-	rm -rf bin/TP1 test/*/*.txt test/data.csv test/*.png
+	rm -rf bin/TP1 test/*/*.txt test/data.csv test/plots/*/*.png

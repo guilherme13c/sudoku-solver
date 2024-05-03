@@ -1,2 +1,5 @@
 .vscode/
 bin/TP1
+test/*/*.txt
+test/data.csv
+test/plots/*/*.png

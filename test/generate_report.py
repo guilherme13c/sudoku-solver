@@ -131,9 +131,9 @@ def main():
     print(f"Data has been written to '{data_file}'")
 
     plot_execution_time_by_algorithm(data_file, "test/plots/exec_time_by_algo")
+    plot_execution_time_by_category(data_file, "test/plots/execution_time_by_category")
     plot_expansions_by_algorithm(data_file, "test/plots/expansions_by_algo")
     plot_expansions_by_category(data_file, "test/plots/expansions_by_category")
-    plot_execution_time_by_category(data_file, "test/plots/execution_time_by_category")
 
 if __name__ == "__main__":
     main()

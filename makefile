@@ -15,12 +15,12 @@ $(BUILD): $(SRC)
 debug: $(SRC)
 	$(CC) $(CFLAGS) -g $(SRC) -o $(BUILD)
 
-test: $(BUILD)
-	$(BUILD) B $(SUDOKU)
-	$(BUILD) I $(SUDOKU)
-	$(BUILD) U $(SUDOKU)
-	$(BUILD) G $(SUDOKU)
-	$(BUILD) A $(SUDOKU)
+test: $(BUILD) test/generate_report.py
+	test/easy/test.sh
+	test/medium/test.sh
+	test/hard/test.sh
 
-clean: $(BUILD)
-	rm -rf bin/TP1
+	python3 test/generate_report.py
+
+clean:
+	rm -rf bin/TP1 test/*/*.txt test/data.csv test/*.png

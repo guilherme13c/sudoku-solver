@@ -116,7 +116,7 @@ def plot_execution_time_by_category(data_file, output_file_prefix):
         plt.bar(algorithm_data['Category'], algorithm_data['Execution Time'], color='blue')
         
         plt.xlabel('Category')
-        plt.ylabel('Execution Time')
+        plt.ylabel('Execution Time (ms)')
         plt.title(f'Execution Time by Category for {algorithm.capitalize()}')
         plt.xticks(rotation=0)
         plt.grid(axis='y')

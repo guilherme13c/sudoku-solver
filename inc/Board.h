@@ -22,7 +22,6 @@ class Board {
     bool isFilled(void);
     bool isValidMove(int row, int col, int num);
     int countPossibleMoves(int row, int col) const;
-    int countTotalPossibleMoves(void) const;
 
     void show(char sepNum = ' ', char sepLine = '\n');
 };

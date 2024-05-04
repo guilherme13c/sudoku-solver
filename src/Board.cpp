@@ -93,24 +93,31 @@ int Board::countPossibleMoves(int row, int col) const {
 
 bool Board::operator<(const Board &other) const {
     bool foundThis = false, foundOther = false;
+    int this_i = 0, this_j = 0, other_i = 0, other_j = 0;
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {
             if (foundThis && foundOther) {
                 goto FOUND;
             }
 
-            if (this->at(i, j) == 0)
+            if (this->at(i, j) == 0) {
                 foundThis = true;
+                this_i = i;
+                this_j = j;
+            }
 
-            if (other.at(i, j) == 0)
+            if (other.at(i, j) == 0) {
                 foundOther = true;
+                other_i = i;
+                other_j = j;
+            }
         }
     }
 FOUND:
 
-    int thisOptions = this->countPossibleMoves(0, 0);
+    int thisOptions = this->countPossibleMoves(this_i, this_j);
 
-    int otherOptions = other.countPossibleMoves(0, 0);
+    int otherOptions = other.countPossibleMoves(other_i, other_j);
 
     return thisOptions > otherOptions;
 }
